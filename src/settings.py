@@ -6,7 +6,7 @@ from scrapy.utils.log import configure_logging
 
 load_dotenv()
 
-BOT_NAME = "napster-catalog"
+BOT_NAME = "finnerio-music-scrapper"
 
 SPIDER_MODULES = ["src.spiders"]
 NEWSPIDER_MODULE = "src.spiders"
@@ -32,7 +32,7 @@ DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_PORT = int(os.getenv("DB_PORT", "5432"))
 DB_USERNAME = os.getenv("DB_USERNAME", "postgres")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "docker")
-DB_NAME = os.getenv("DB_NAME", "napster_dev")
+DB_NAME = os.getenv("DB_NAME", "postgres")
 
 ITEM_PIPELINES = {
    'src.pipelines.database.DatabasePipeline': 300,

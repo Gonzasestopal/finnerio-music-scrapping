@@ -1,0 +1,4 @@
+requests==2.22.0
+scrapy==2.6.3
+psycopg2-binary==2.9.5
+python-dotenv==0.10.5

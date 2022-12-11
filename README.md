@@ -1,4 +1,4 @@
-# Napster catalog
+# Finnerio Music Scrapper
 
 Napster web scrapping project.
 
@@ -11,8 +11,11 @@ Napster web scrapping project.
 
 ## Installation
 
-Install dependencies and configure .env.
+Install dependencies
 
+Copy and replace .env.example
+
+Make sure db is running
 
 ## Usage
 
@@ -20,6 +23,15 @@ Run commands through scrapy to obtain proper information data.
 
 - scrapy crawl genres
 
+## Docker
+
+Build app image
+
+- docker build -t finnerio-music-scrapper
+
+Run image
+
+- docker run -e "NAPSTER_API_KEY=xxxx" -e "NAPSTER_API_URL=xxxx" finnerio-music-scrapper
 
 ## Support
 
