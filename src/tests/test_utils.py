@@ -1,6 +1,6 @@
 import unittest
 
-from utils.urls import build_url
+from src.utils.urls import build_url
 
 
 class RequestTestCase(unittest.TestCase):
