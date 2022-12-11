@@ -2,13 +2,13 @@ import unittest
 
 from scrapy.http import Response
 
-from src.spiders.genres import Genres
+from src.spiders import GenreSpider
 
 
 class GenresSpiderTest(unittest.TestCase):
 
     def setUp(self):
-        self.spider = Genres()
+        self.spider = GenreSpider()
 
     def _test_item_results(self, results, expected_length):
         count = 0

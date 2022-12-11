@@ -9,12 +9,12 @@ from scrapy.http import Response
 from scrapy.loader import ItemLoader
 from scrapy.spiders import CrawlSpider
 
-from src.items import Genre
+from src.items import GenreItem
 from src.settings import NAPSTER_API_KEY, NAPSTER_API_URL
 from src.utils import build_url
 
 
-class Genres(CrawlSpider):
+class GenreSpider(CrawlSpider):
     name = "genres"
 
     custom_settings = {}
@@ -46,7 +46,7 @@ class Genres(CrawlSpider):
         data = json_res['genres']
 
         for genre in data:
-            loader = ItemLoader(item=Genre())
+            loader = ItemLoader(item=GenreItem())
             loader.add_value('name', genre['name'])
             loader.add_value('href', genre['href'])
             yield loader.load_item()

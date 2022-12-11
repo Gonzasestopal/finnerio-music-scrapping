@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from .genres import Genre
+from .genres import GenreItem
