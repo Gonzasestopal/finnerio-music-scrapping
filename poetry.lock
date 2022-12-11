@@ -217,34 +217,6 @@ docs = ["furo (>=2022.9.29)", "sphinx (>=5.3)", "sphinx-autodoc-typehints (>=1.1
 testing = ["covdefaults (>=2.2.2)", "coverage (>=6.5)", "pytest (>=7.2)", "pytest-cov (>=4)", "pytest-timeout (>=2.1)"]
 
 [[package]]
-name = "h2"
-version = "3.2.0"
-description = "HTTP/2 State-Machine based protocol implementation"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-hpack = ">=3.0,<4"
-hyperframe = ">=5.2.0,<6"
-
-[[package]]
-name = "hpack"
-version = "3.0.0"
-description = "Pure-Python HPACK header compression"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
-name = "hyperframe"
-version = "5.2.0"
-description = "HTTP/2 framing layer for Python"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "hyperlink"
 version = "21.0.0"
 description = "A featureful, immutable, and correct URL for Python."
@@ -470,14 +442,6 @@ toml = "*"
 virtualenv = ">=20.0.8"
 
 [[package]]
-name = "priority"
-version = "1.3.0"
-description = "A pure-Python implementation of the HTTP/2 priority tree"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "protego"
 version = "0.2.1"
 description = "Pure-Python robots.txt parser with support for modern conventions"
@@ -487,6 +451,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.dependencies]
 six = "*"
+
+[[package]]
+name = "psycopg2-binary"
+version = "2.9.5"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "pyasn1"
@@ -623,17 +595,28 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "requests-file"
+version = "1.5.1"
+description = "File transport adapter for Requests"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+requests = ">=1.0.0"
+six = "*"
+
+[[package]]
 name = "scrapy"
-version = "2.5.1"
+version = "2.6.3"
 description = "A high-level Web Crawling and Web Scraping framework"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-cryptography = ">=2.0"
+cryptography = ">=3.3"
 cssselect = ">=0.9.1"
-h2 = ">=3.0,<4.0"
 itemadapter = ">=0.1.0"
 itemloaders = ">=1.0.1"
 lxml = [
@@ -643,13 +626,15 @@ lxml = [
 parsel = ">=1.5.0"
 protego = ">=0.1.15"
 PyDispatcher = {version = ">=2.0.5", markers = "platform_python_implementation == \"CPython\""}
-pyOpenSSL = ">=16.2.0"
+pyOpenSSL = ">=21.0.0"
 PyPyDispatcher = {version = ">=2.1.0", markers = "platform_python_implementation == \"PyPy\""}
 queuelib = ">=1.4.2"
-service-identity = ">=16.0.0"
-Twisted = {version = ">=17.9.0", extras = ["http2"]}
+service-identity = ">=18.1.0"
+setuptools = "*"
+tldextract = "*"
+Twisted = ">=18.9.0"
 w3lib = ">=1.17.0"
-"zope.interface" = ">=4.1.3"
+"zope.interface" = ">=5.0.0"
 
 [[package]]
 name = "scrapy-new"
@@ -707,6 +692,20 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "tldextract"
+version = "3.4.0"
+description = "Accurately separates a URL's subdomain, domain, and public suffix, using the Public Suffix List (PSL). By default, this includes the public ICANN TLDs and their exceptions. You can optionally support the Public Suffix List's private domains as well."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+filelock = ">=3.0.8"
+idna = "*"
+requests = ">=2.1.0"
+requests-file = ">=1.4"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -742,10 +741,8 @@ python-versions = ">=3.7.1"
 attrs = ">=19.2.0"
 Automat = ">=0.8.0"
 constantly = ">=15.1"
-h2 = {version = ">=3.0,<5.0", optional = true, markers = "extra == \"http2\""}
 hyperlink = ">=17.1.1"
 incremental = ">=21.3.0"
-priority = {version = ">=1.1.0,<2.0", optional = true, markers = "extra == \"http2\""}
 twisted-iocpsupport = {version = ">=1.0.2,<2", markers = "platform_system == \"Windows\""}
 typing-extensions = ">=3.6.5"
 "zope.interface" = ">=4.4.2"
@@ -856,7 +853,7 @@ testing = ["coverage (>=5.0.3)", "zope-event", "zope-testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "7c8d1e910e395fe192400cd29e26175aec7c1e90b4d3f9bd419162ac48f3fae2"
+content-hash = "1a9d96973e1fba3ff3c7099240259ab1bf150b3a24b594f9ca96b97240ced516"
 
 [metadata.files]
 appdirs = [
@@ -949,9 +946,6 @@ dill = []
 distlib = []
 dotenv-linter = []
 filelock = []
-h2 = []
-hpack = []
-hyperframe = []
 hyperlink = []
 identify = []
 idna = []
@@ -1098,8 +1092,8 @@ pathspec = []
 platformdirs = []
 ply = []
 pre-commit = []
-priority = []
 protego = []
+psycopg2-binary = []
 pyasn1 = []
 pyasn1-modules = []
 pycparser = [
@@ -1152,6 +1146,7 @@ requests = [
     {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
     {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
+requests-file = []
 scrapy = []
 scrapy-new = []
 service-identity = []
@@ -1160,6 +1155,7 @@ six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
+tldextract = []
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},

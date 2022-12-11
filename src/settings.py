@@ -28,4 +28,14 @@ EXTENSIONS = {}
 NAPSTER_API_URL = os.getenv("NAPSTER_API_URL", "")
 NAPSTER_API_KEY = os.getenv("NAPSTER_API_KEY", "")
 
+DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
+DB_PORT = int(os.getenv("DB_PORT", "5432"))
+DB_USERNAME = os.getenv("DB_USERNAME", "postgres")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "docker")
+DB_NAME = os.getenv("DB_NAME", "napster_dev")
+
+ITEM_PIPELINES = {
+   'src.pipelines.database.DatabasePipeline': 300,
+}
+
 configure_logging()
