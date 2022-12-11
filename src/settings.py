@@ -8,8 +8,8 @@ load_dotenv()
 
 BOT_NAME = "napster-catalog"
 
-SPIDER_MODULES = ["spiders"]
-NEWSPIDER_MODULE = "spiders"
+SPIDER_MODULES = ["src.spiders"]
+NEWSPIDER_MODULE = "src.spiders"
 
 USER_AGENT_RELEASE_DATE = '2021-11-01'
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36"

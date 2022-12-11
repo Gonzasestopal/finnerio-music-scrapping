@@ -3,14 +3,15 @@ import json
 from typing import Iterator, Union
 
 import scrapy
-from items import Genre
 from scrapy import Item, Request, Spider, signals
 from scrapy.crawler import Crawler
 from scrapy.http import Response
 from scrapy.loader import ItemLoader
 from scrapy.spiders import CrawlSpider
-from settings import NAPSTER_API_KEY, NAPSTER_API_URL
-from utils import build_url
+
+from src.items import Genre
+from src.settings import NAPSTER_API_KEY, NAPSTER_API_URL
+from src.utils import build_url
 
 
 class Genres(CrawlSpider):
