@@ -23,8 +23,11 @@ Run commands through scrapy to obtain proper information data.
 
 ## Support
 
-Please [open an issue](https://github.com/gonzasestopal/napster-catalog/issues/new) for support.
+Please [open an issue](https://github.com/gonzasestopal/finnerio-music-scrapping/issues/new) for support.
 
 ## Contributing
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/gonzasestopal/napster-catalog/compare/).
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/gonzasestopal/finnerio-music-scrapping/compare/).
+
+Add data persistance layer
+Add db-layer

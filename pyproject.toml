@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "napster-catalog"
+name = "finnerio-music-scrapping"
 version = "0.0.1"
 description = ""
 authors = ["Gonzalo Sestopal <gonzasestopal@gmail.com>"]
