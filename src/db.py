@@ -61,11 +61,32 @@ class Database:
         )
         self.conn.commit()
 
+    def insert_song(self, table, name, artist_id, album_id):
+        self.cur.execute(
+            """INSERT INTO %s (name, artist_id, album_id) values (%s, %s, %s)""", (
+                AsIs(table),
+                name,
+                artist_id,
+                album_id,
+            ),
+        )
+        self.conn.commit()
+
 
     def fetch_artist_by_name(self, name):
         self.cur.execute(
             """SELECT id, name FROM %s WHERE name=%s""", (
                 AsIs('artists'),
+                name,
+            ),
+        )
+
+        return self.cur.fetchone() or (None, None)
+
+    def fetch_album_by_name(self, name):
+        self.cur.execute(
+            """SELECT id, name FROM %s WHERE name=%s""", (
+                AsIs('albums'),
                 name,
             ),
         )
