@@ -48,7 +48,6 @@ class GenreSpider(CrawlSpider):
         for genre in data:
             loader = ItemLoader(item=GenreItem())
             loader.add_value('name', genre['name'])
-            loader.add_value('href', genre['href'])
             yield loader.load_item()
 
     def spider_closed(self) -> None:

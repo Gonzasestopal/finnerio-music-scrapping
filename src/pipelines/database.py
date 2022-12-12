@@ -17,12 +17,10 @@ class DatabasePipeline:
         self.cur = self.conn.cursor()
 
     def process_item(self, item, spider):
-        print(spider.name)
         self.cur.execute(
-            """insert into %s (name, href) values (%s, %s)""", (
+            """insert into %s (name) values (%s)""", (
                 AsIs(spider.name),
                 item["name"],
-                item["href"]
             ),
         )
 

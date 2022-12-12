@@ -14,7 +14,6 @@ class GenresSpiderTest(unittest.TestCase):
         count = 0
         for item in results:
             self.assertIsNotNone(item['name'])
-            self.assertIsNotNone(item['href'])
             count += 1
         self.assertEqual(count, expected_length)
 
