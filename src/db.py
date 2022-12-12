@@ -51,12 +51,13 @@ class Database:
         )
         self.conn.commit()
 
-    def insert_album(self, table, name, artist_id):
+    def insert_album(self, name, artist_id, genre_id):
         self.cur.execute(
-            """INSERT INTO %s (name, artist_id) values (%s, %s)""", (
-                AsIs(table),
+            """INSERT INTO %s (name, artist_id, genre_id) values (%s, %s, %s)""", (
+                AsIs('albums'),
                 name,
                 artist_id,
+                genre_id,
             ),
         )
         self.conn.commit()
@@ -92,3 +93,14 @@ class Database:
         )
 
         return self.cur.fetchone() or (None, None)
+
+
+    def insert_artist(self, name, genre_id):
+        self.cur.execute(
+            """INSERT INTO %s (name, genre_id) values (%s, %s)""", (
+                AsIs('artists'),
+                name,
+                genre_id,
+            ),
+        )
+        self.conn.commit()

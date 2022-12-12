@@ -11,7 +11,7 @@ from scrapy.spiders import CrawlSpider
 
 from src.db import Database
 from src.settings import NAPSTER_API_KEY, NAPSTER_API_URL
-from src.utils import build_url
+from src.utils import build_url, parse_querystring
 
 
 class AlbumSpider(CrawlSpider):
@@ -39,7 +39,7 @@ class AlbumSpider(CrawlSpider):
         for genre in response.json()['genres']:
             path = '/'.join(['genres', genre['id'], self.name, 'top'])
             urls.append(
-                build_url(NAPSTER_API_URL, path, {'apikey': NAPSTER_API_KEY, 'limit': "1"})
+                build_url(NAPSTER_API_URL, path, {'apikey': NAPSTER_API_KEY, 'limit': "1", 'name': genre['name']})
             )
 
         for url in urls:
@@ -48,6 +48,7 @@ class AlbumSpider(CrawlSpider):
 
     def parse(self, response: Response) -> Iterator[Union[Item, Request]]:
         self.logger.info('request status %s', response.status)
+        parse_result = parse_querystring(response.url)
         json_res = json.loads(response.body)
         if not isinstance(json_res, dict) or len(json_res) < 1:
             self.logger.info('empty or malformed response %s', json_res)
@@ -56,8 +57,9 @@ class AlbumSpider(CrawlSpider):
         data = json_res['albums']
 
         for album in data:
+            genre_id, _ = self.database.fetch_genre_by_name(parse_result['name'][0])
             artist_id, _ = self.database.fetch_artist_by_name(album['artistName'])
-            self.database.insert_album(self.name, album['name'], artist_id)
+            self.database.insert_album(album['name'], artist_id, genre_id)
 
     def spider_closed(self) -> None:
         self.database.cur.close()
