@@ -62,13 +62,14 @@ class Database:
         )
         self.conn.commit()
 
-    def insert_song(self, table, name, artist_id, album_id):
+    def insert_song(self, name, artist_id, album_id, genre_id):
         self.cur.execute(
-            """INSERT INTO %s (name, artist_id, album_id) values (%s, %s, %s)""", (
-                AsIs(table),
+            """INSERT INTO %s (name, artist_id, album_id, genre_id) values (%s, %s, %s, %s)""", (
+                AsIs('songs'),
                 name,
                 artist_id,
                 album_id,
+                genre_id,
             ),
         )
         self.conn.commit()
