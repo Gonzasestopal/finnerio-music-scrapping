@@ -18,12 +18,11 @@ class DatabasePipeline:
 
     def process_item(self, item, spider):
         self.cur.execute(
-            """insert into %s (name) values (%s)""", (
+            """INSERT INTO %s (name) values (%s)""", (
                 AsIs(spider.name),
                 item["name"],
             ),
         )
-
         self.conn.commit()
 
     def close_spider(self, _):
