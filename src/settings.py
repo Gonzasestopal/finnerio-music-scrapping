@@ -38,4 +38,6 @@ ITEM_PIPELINES = {
    'src.pipelines.database.DatabasePipeline': 300,
 }
 
+DOWNLOAD_DELAY = 2
+
 configure_logging()

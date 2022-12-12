@@ -2,6 +2,7 @@
 import json
 from typing import Iterator, Union
 
+import requests
 import scrapy
 from scrapy import Item, Request, Spider, signals
 from scrapy.crawler import Crawler
@@ -13,8 +14,8 @@ from src.settings import NAPSTER_API_KEY, NAPSTER_API_URL
 from src.utils import build_url
 
 
-class GenreSpider(CrawlSpider):
-    name = "genres"
+class ArtistSpider(CrawlSpider):
+    name = "artists"
 
     custom_settings = {}
 
@@ -29,9 +30,17 @@ class GenreSpider(CrawlSpider):
         Spider.__init__(self, *args, **kwargs)
 
     def start_requests(self) -> Iterator[Request]:
-        urls = [
-            build_url(NAPSTER_API_URL, self.name, {'apikey': NAPSTER_API_KEY}),
-        ]
+        response = requests.get(
+            build_url(NAPSTER_API_URL, 'genres', {'apikey': NAPSTER_API_KEY})
+        )
+
+        urls = []
+
+        for genre in response.json()['genres']:
+            path = '/'.join(['genres', genre['id'], self.name, 'top'])
+            urls.append(
+                build_url(NAPSTER_API_URL, path, {'apikey': NAPSTER_API_KEY, 'limit': "1"})
+            )
 
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -43,10 +52,10 @@ class GenreSpider(CrawlSpider):
             self.logger.info('empty or malformed response %s', json_res)
             return None
 
-        data = json_res['genres']
+        data = json_res['artists']
 
-        for genre in data:
-            self.database.insert_name(self.name, genre['name'])
+        for artist in data:
+            self.database.insert_name(self.name, artist['name'])
 
     def spider_closed(self) -> None:
         self.database.cur.close()
