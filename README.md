@@ -24,7 +24,13 @@ Copy and replace .env.example
 
 Run commands through scrapy to obtain proper information data.
 
+Make sure you run crawlers in this order.
+
 - scrapy crawl genres
+- scrape crawl subgenres
+- scrapy crawl artists
+- scrapy crawl albums
+- scrapy crawl songs
 
 ## Docker
 
